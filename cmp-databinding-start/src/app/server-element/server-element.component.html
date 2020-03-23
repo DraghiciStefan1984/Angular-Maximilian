@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  {% comment %} <div class="panel-heading">{{ element.name }}</div> {% endcomment %}
+  <div class="panel-heading">{{ name }}</div>
+  <div class="panel-body">
+    {% comment %} <p>
+      <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
+      <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
+    </p> {% endcomment %}
+    <ng-content></ng-content>
+  </div>
+</div>
