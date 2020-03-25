@@ -5,6 +5,10 @@
 </div>
 <div class="row no-gutters">
     <div class="col-md-8">
-        <app-recipe-item *ngFor="let recipe_element of recipes" [recipe]="recipe_element"></app-recipe-item>
+        <app-recipe-item 
+            *ngFor="let recipe_element of recipes" 
+            [recipe]="recipe_element"
+            (recipeSelected)="onRecipeSelected(recipe_element)"
+            ></app-recipe-item>
     </div>
 </div>
