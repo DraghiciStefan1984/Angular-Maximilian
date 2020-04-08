@@ -30,7 +30,7 @@ import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [RecipeService, ShoppingListService],
   bootstrap: [AppComponent]
