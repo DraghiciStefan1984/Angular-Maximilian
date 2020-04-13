@@ -1,9 +1,9 @@
+import { RecipeService } from './components/recipes/recipe.service';
 import { ShoppingListService } from './components/shopping-list/shopping-list.service';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -36,7 +36,7 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
     AppRoutingModule,
     ReactiveFormsModule
   ],
-  providers: [ShoppingListService],
+  providers: [ShoppingListService, RecipeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
