@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
   onCreatePost(postData: { title: string; content: string }) 
   {
     console.log(postData);
+    this.http.post('https://http-01-start-865c5.firebaseio.com/posts.json', 
+                    postData).subscribe(responseData=>{
+                      console.log(responseData);
+                    });
   }
 
   onFetchPosts() 
