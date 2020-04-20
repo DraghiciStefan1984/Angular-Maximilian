@@ -1,6 +1,6 @@
 export interface Post
 {
-    tite: string;
+    title: string;
     content: string;
     id?: string; 
 }
