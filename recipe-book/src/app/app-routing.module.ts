@@ -5,6 +5,7 @@ import { ShoppingListComponent } from './components/shopping-list/shopping-list.
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { RecipesResolverService } from './components/recipes/recipes-resolver.service';
 
 
 const routes: Routes = [
@@ -12,8 +13,8 @@ const routes: Routes = [
   {path: 'recipes', component: RecipesComponent, children: [
     {path: '', component: RecipeStartComponent},
     {path: 'new', component: RecipeEditComponent},
-    {path: ':id', component: RecipeDetailComponent},
-    {path: ':id/edit', component: RecipeEditComponent},
+    {path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService]},
+    {path: ':id/edit', component: RecipeEditComponent, resolve: [RecipesResolverService]},
   ]},
   {path: 'shopping-list', component: ShoppingListComponent},
 ];
