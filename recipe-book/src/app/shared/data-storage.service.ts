@@ -26,26 +26,17 @@ export class DataStorageService
 
     fetchRecipes()
     {
-        return this.authServie.user.pipe
-        (take(1), exhaustMap
-            (user=>
+        return this.http.get<Recipe[]>(this.url)
+        .pipe(map(recipes=>
+            {
+                return recipes.map(recipe=>
                 {
-                    return this.http.get<Recipe[]>(this.url, {params: new HttpParams().set('auth', user.token)})
-                }
-            ), map(recipes=>
-                        {
-                            return recipes.map(recipe=>
-                                {
-                                    return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
-                                });
-                        }
-                    ),
-                tap(recipes=>
-                        {
-                            this.recipeService.setRecipes(recipes);
-                        }
-                    )
-        );
-        
+                    return {...recipe, ingredients: recipe.ingredients ? recipe.ingredients : []};
+                });
+            }),
+            tap(recipes=>
+            {
+                this.recipeService.setRecipes(recipes);
+            }));
     }
 }
