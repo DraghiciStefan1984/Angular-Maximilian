@@ -8,33 +8,22 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthInterceptorService } from './auth/auth-interceptor.service';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
-import { RecipesComponent } from './components/recipes/recipes.component';
-import { RecipeListComponent } from './components/recipes/recipe-list/recipe-list.component';
-import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './components/recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/shopping-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { RecipeStartComponent } from './components/recipes/recipe-start/recipe-start.component';
-import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ShoppingListService } from './components/shopping-list/shopping-list.service';
 import { RecipeService } from './components/recipes/recipe.service';
 import { AlertComponent } from './components/alerts/alert/alert.component';
+import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
+import { RecipesModule } from './components/recipes/recipes.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    RecipeStartComponent,
-    RecipeEditComponent,
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,
@@ -45,7 +34,8 @@ import { AlertComponent } from './components/alerts/alert/alert.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    RecipesModule
   ],
   providers: [
     ShoppingListService,
