@@ -31,51 +31,51 @@ export class AuthService {
     private store: Store<fromApp.AppState>
   ) {}
 
-  signup(email: string, password: string) {
-    return this.http
-      .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6WQocxWlJ1UnkavQKs2L7R86K1lYCRdA',
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true
-        }
-      )
-      .pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
+  // signup(email: string, password: string) {
+  //   return this.http
+  //     .post<AuthResponseData>(
+  //       'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyD6WQocxWlJ1UnkavQKs2L7R86K1lYCRdA',
+  //       {
+  //         email: email,
+  //         password: password,
+  //         returnSecureToken: true
+  //       }
+  //     )
+  //     .pipe(
+  //       catchError(this.handleError),
+  //       tap(resData => {
+  //         this.handleAuthentication(
+  //           resData.email,
+  //           resData.localId,
+  //           resData.idToken,
+  //           +resData.expiresIn
+  //         );
+  //       })
+  //     );
+  // }
 
-  login(email: string, password: string) {
-    return this.http
-      .post<AuthResponseData>(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6WQocxWlJ1UnkavQKs2L7R86K1lYCRdA',
-        {
-          email: email,
-          password: password,
-          returnSecureToken: true
-        }
-      )
-      .pipe(
-        catchError(this.handleError),
-        tap(resData => {
-          this.handleAuthentication(
-            resData.email,
-            resData.localId,
-            resData.idToken,
-            +resData.expiresIn
-          );
-        })
-      );
-  }
+  // login(email: string, password: string) {
+  //   return this.http
+  //     .post<AuthResponseData>(
+  //       'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyD6WQocxWlJ1UnkavQKs2L7R86K1lYCRdA',
+  //       {
+  //         email: email,
+  //         password: password,
+  //         returnSecureToken: true
+  //       }
+  //     )
+  //     .pipe(
+  //       catchError(this.handleError),
+  //       tap(resData => {
+  //         this.handleAuthentication(
+  //           resData.email,
+  //           resData.localId,
+  //           resData.idToken,
+  //           +resData.expiresIn
+  //         );
+  //       })
+  //     );
+  // }
 
   autoLogin() {
     const userData: {
@@ -98,7 +98,7 @@ export class AuthService {
     if (loadedUser.token) {
       // this.user.next(loadedUser);
       this.store.dispatch(
-        new AuthActions.Login({
+        new AuthActions.AuthenticateSuccess({
           email: loadedUser.email,
           userId: loadedUser.id,
           token: loadedUser.token,
@@ -115,7 +115,7 @@ export class AuthService {
   logout() {
     // this.user.next(null);
     this.store.dispatch(new AuthActions.Logout());
-    this.router.navigate(['/auth']);
+    // this.router.navigate(['/auth']);
     localStorage.removeItem('userData');
     if (this.tokenExpirationTimer) {
       clearTimeout(this.tokenExpirationTimer);
@@ -139,7 +139,7 @@ export class AuthService {
     // this.user.next(user);
     const user = new User(email, userId, token, expirationDate);
     this.store.dispatch(
-      new AuthActions.Login({
+      new AuthActions.AuthenticateSuccess({
         email: email,
         userId: userId,
         token: token,
