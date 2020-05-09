@@ -1,17 +1,8 @@
 import { Injectable } from '@angular/core';
-import * as fromApp from '../store/app.reducer';
-import * as AuthActions from './store/auth.actions';
 import { Store } from '@ngrx/store';
 
-export interface AuthResponseData {
-  kind: string;
-  idToken: string;
-  email: string;
-  refreshToken: string;
-  expiresIn: string;
-  localId: string;
-  registered?: boolean;
-}
+import * as fromApp from '../store/app.reducer';
+import * as AuthActions from './store/auth.actions';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
